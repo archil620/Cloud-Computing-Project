@@ -1,0 +1,46 @@
+.card.mb-3
+    .card-header
+      i.fa.fa-table
+      |  Donations
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered(width='100%', cellspacing='0')
+          thead
+            tr
+              th No
+              th Donation Type
+              th App ID
+              th Status
+              th Requested At
+              th Checked At
+              th Approved At
+              th Action
+          tfoot
+            tr
+              th No
+              th Donation Type
+              th App ID
+              th Status
+              th Requested At
+              th Checked At
+              th Approved At
+              th Action
+          tbody
+            each row, index in donations
+              - var status = 'Pending';
+              - if (row.status == 1 ) status = "Pending of Checkbody"
+              - if (row.status == 2 ) status = "Pending of Doctor approved"
+              - if (row.status == 3 ) status = "Donated"              
+              tr
+                td=(index+1)
+                td=row.donateType
+                td=row.id
+                td=status
+                td=row.createdAt
+                td=row.checkedAt
+                td=row.approvedAt
+                td  
+                  a.btn.btn-primary(href='/donate/' + row.id, role="button")
+                    i.fa.fa-eye
+            
+    .card-footer.small.text-muted
