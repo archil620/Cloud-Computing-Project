@@ -1,0 +1,240 @@
+// Donate Modal
+mixin form-row(name, type, label, id)
+  .form-group.row    
+    if block 
+      block
+    else
+      label.col-sm-2.col-form-label(for=id)= label+':'
+      .col-sm-10
+        input.form-control(id=id, placeholder=label, name=name, type=type, required)
+
+#checkbodyModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='checkbodyModalLabel', aria-hidden='true')
+  .modal-dialog.modal-lg(role='document')
+    .modal-content
+      form#donate(method='POST', action='/to/checkbody')
+        .modal-header
+          h5#exampleModalLabel.modal-title Please fill out the followings for checking your body!
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          .container-fluid
+            input#appId(type='hidden', name="appId")
+            +form-row('glucose', 'range', '', 'glucose')
+              label.col-sm-6.col-form-label(for='glucose') GLUCOSE, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="glucose", min="65" max="99") 
+                output(for="glucose" onforminput="value = glucose.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mg/dL)
+            +form-row('bun', 'range', 'bun', 'bun')
+              label.col-sm-6.col-form-label(for='bun') BUN
+              .col-sm-5.offset-sm-1
+                input(type="range", name="bun", min="5" max="26") 
+                output(for="bun" onforminput="value = bun.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mg/dL)
+            +form-row('creatinine', 'range', '', 'creatinine')
+              label.col-sm-6.col-form-label(for='creatinine') CREATININE, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="creatinine", min="57" max="100", float) 
+                output(for="creatinine" onforminput="value = creatinine.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mg/dL)
+            +form-row('glom', 'text', 'glom', 'glom')
+              label.col-sm-6.col-form-label(for='glom') GLOM FILT RATE, EST
+              .col-sm-5.offset-sm-1
+                .custom-control.custom-radio.custom-control-inline
+                  input#moreglom.custom-control-input(type='radio', name='glom', value="0", checked)
+                  label.custom-control-label(for='moreglom') >59                  
+                .custom-control.custom-radio.custom-control-inline
+                  input#lessglom.custom-control-input(type='radio', name='glom', value="1")
+                  label.custom-control-label(for='lessglom', style='color: blue; margin-left: 10px') (mL/min/1.73)
+            +form-row('african', 'text', 'glom', 'african')
+              label.col-sm-6.col-form-label(for='african') IF AFRICAN-AMERICAN
+              .col-sm-5.offset-sm-1
+                .custom-control.custom-radio.custom-control-inline
+                  input#moreafrican.custom-control-input(type='radio', name='african', value="0", checked)
+                  label.custom-control-label(for='moreafrican') >59                  
+                .custom-control.custom-radio.custom-control-inline
+                  input#lessafrican.custom-control-input(type='radio', name='african', value="1")
+                  label.custom-control-label(for='lessafrican', style='color: blue; margin-left: 10px') (mL/min/1.73)
+            +form-row('bun_creatinine', 'range', '', 'bun_creatinine')
+              label.col-sm-6.col-form-label(for='bun_creatinine') BUN/CREATININE RATIO
+              .col-sm-5.offset-sm-1
+                input(type="range", name="bun_creatinine", min="8" max="27") 
+                output(for="bun_creatinine" onforminput="value = bun_creatinine.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue')
+            +form-row('sodium', 'range', '', 'sodium')
+              label.col-sm-6.col-form-label(for='sodium') SODIUM, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="sodium", min="135" max="145") 
+                output(for="sodium" onforminput="value = sodium.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mmol/L)
+            +form-row('potassium', 'range', '', 'potassium')
+              label.col-sm-6.col-form-label(for='potassium') POTASSIUM, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="potassium", min="350" max="520", float) 
+                output(for="potassium" onforminput="value = potassium.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mmol/L)
+            +form-row('chloride', 'range', '', 'chloride')
+              label.col-sm-6.col-form-label(for='chloride') CHLORIDE, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="chloride", min="97" max="108") 
+                output(for="chloride" onforminput="value = chloride.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mmol/L)
+            +form-row('carbon', 'range', '', 'carbon')
+              label.col-sm-6.col-form-label(for='carbon') CARBON DIOXIDE, TOTAL
+              .col-sm-5.offset-sm-1
+                input(type="range", name="carbon", min="20" max="32") 
+                output(for="carbon" onforminput="value = carbon.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mmol/L)
+            +form-row('calcium', 'range', '', 'calcium')
+              label.col-sm-6.col-form-label(for='calcium') CALCIUM, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="calcium", min="870" max="1020", float) 
+                output(for="calcium" onforminput="value = calcium.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mg/dL)
+            +form-row('protein', 'range', '', 'protein')
+              label.col-sm-6.col-form-label(for='protein') PROTEIN, TOTAL, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="protein", min="600" max="850", float) 
+                output(for="protein" onforminput="value = protein.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (g/dL)
+            +form-row('albumin', 'range', '', 'albumin')
+              label.col-sm-6.col-form-label(for='albumin') ALBUMIN, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="albumin", min="350" max="550", float) 
+                output(for="albumin" onforminput="value = albumin.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (g/dL)
+            +form-row('globulin', 'range', '', 'globulin')
+              label.col-sm-6.col-form-label(for='globulin') GLOBULIN, TOTAL
+              .col-sm-5.offset-sm-1
+                input(type="range", name="globulin", min="150" max="450", float) 
+                output(for="globulin" onforminput="value = globulin.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (g/dL)
+            +form-row('ag', 'range', '', 'ag')
+              label.col-sm-6.col-form-label(for='ag') A/G RATIO
+              .col-sm-5.offset-sm-1
+                input(type="range", name="ag", min="110" max="250", float) 
+                output(for="ag" onforminput="value = ag.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') 
+            +form-row('bilirubin', 'range', '', 'bilirubin')
+              label.col-sm-6.col-form-label(for='bilirubin') BILIRUBIN, TOTAL
+              .col-sm-5.offset-sm-1
+                input(type="range", name="bilirubin", min="10" max="120", float) 
+                output(for="bilirubin" onforminput="value = bilirubin.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (mg/dL)
+            +form-row('alkaline', 'range', '', 'alkaline')
+              label.col-sm-6.col-form-label(for='alkaline') ALKALINE PHOSPHATASE, SERUM
+              .col-sm-5.offset-sm-1
+                input(type="range", name="alkaline", min="25" max="150") 
+                output(for="alkaline" onforminput="value = alkaline.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (IU/L)
+            +form-row('ast', 'range', '', 'ast')
+              label.col-sm-6.col-form-label(for='ast') AST (SGOT)
+              .col-sm-5.offset-sm-1
+                input(type="range", name="ast", min="0" max="40") 
+                output(for="ast" onforminput="value = ast.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (IU/L)
+            +form-row('alt_sgpt', 'range', '', 'alt_sgpt')
+              label.col-sm-6.col-form-label(for='alt_sgpt') ALT (SGPT)
+              .col-sm-5.offset-sm-1
+                input(type="range", name="alt_sgpt", min="0" max="40") 
+                output(for="alt_sgpt" onforminput="value = alt_sgpt.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (IU/L)
+            +form-row('tsh', 'range', '', 'tsh')
+              label.col-sm-6.col-form-label(for='tsh') TSH
+              .col-sm-5.offset-sm-1
+                input(type="range", name="tsh", min="45" max="450", float) 
+                output(for="tsh" onforminput="value = tsh.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (uIU/mL)
+            +form-row('white', 'range', '', 'white')
+              label.col-sm-6.col-form-label(for='white') WHITE BLOOD CELL (WBC) COUNT
+              .col-sm-5.offset-sm-1
+                input(type="range", name="white", min="400" max="1050", float) 
+                output(for="white" onforminput="value = white.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (x10E3/uL)
+            +form-row('red', 'range', '', 'red')
+              label.col-sm-6.col-form-label(for='red') RED BLOOD CELL (RBC) COUNT
+              .col-sm-5.offset-sm-1
+                input(type="range", name="red", min="380" max="510", float) 
+                output(for="red" onforminput="value = red.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (x10E6/uL)
+            +form-row('hemoglobin', 'range', '', 'hemoglobin')
+              label.col-sm-6.col-form-label(for='hemoglobin') HEMOGLOBIN
+              .col-sm-5.offset-sm-1
+                input(type="range", name="hemoglobin", min="1150" max="1500", float) 
+                output(for="hemoglobin" onforminput="value = hemoglobin.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (g/dL)
+            +form-row('hematocrit', 'range', '', 'hematocrit')
+              label.col-sm-6.col-form-label(for='hematocrit') HEMATOCRIT
+              .col-sm-5.offset-sm-1
+                input(type="range", name="hematocrit", min="3400" max="4400", float) 
+                output(for="hematocrit" onforminput="value = hematocrit.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (%)
+            +form-row('mcv', 'range', '', 'mcv')
+              label.col-sm-6.col-form-label(for='mcv') MCV
+              .col-sm-5.offset-sm-1
+                input(type="range", name="mcv", min="80" max="98") 
+                output(for="mcv" onforminput="value = mcv.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (fL)
+            +form-row('mch', 'range', '', 'mch')
+              label.col-sm-6.col-form-label(for='mch') MCH
+              .col-sm-5.offset-sm-1
+                input(type="range", name="mch", min="270" max="340", dec) 
+                output(for="mch" onforminput="value = mch.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (pg)
+            +form-row('mchc', 'range', '', 'mchc')
+              label.col-sm-6.col-form-label(for='mchc') MCHC
+              .col-sm-5.offset-sm-1
+                input(type="range", name="mchc", min="320" max="360", dec) 
+                output(for="mchc" onforminput="value = mchc.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (g/dL)
+            +form-row('rdw', 'range', '', 'rdw')
+              label.col-sm-6.col-form-label(for='rdw') RDW
+              .col-sm-5.offset-sm-1
+                input(type="range", name="rdw", min="117" max="150", dec) 
+                output(for="rdw" onforminput="value = rdw.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (%)
+            +form-row('platelets', 'range', '', 'platelets')
+              label.col-sm-6.col-form-label(for='platelets') PLATELETS
+              .col-sm-5.offset-sm-1
+                input(type="range", name="platelets", min="140" max="415") 
+                output(for="platelets" onforminput="value = platelets.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (g/dL)
+            +form-row('neutrophils', 'range', '', 'neutrophils')
+              label.col-sm-6.col-form-label(for='neutrophils') NEUTROPHILS
+              .col-sm-5.offset-sm-1
+                input(type="range", name="neutrophils", min="40" max="74") 
+                output(for="neutrophils" onforminput="value = neutrophils.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (%)
+            +form-row('lymphs', 'range', '', 'lymphs')
+              label.col-sm-6.col-form-label(for='lymphs') LYMPHS
+              .col-sm-5.offset-sm-1
+                input(type="range", name="lymphs", min="14" max="46") 
+                output(for="lymphs" onforminput="value = lymphs.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (%)
+            +form-row('monocytes', 'range', '', 'monocytes')
+              label.col-sm-6.col-form-label(for='monocytes') MONOCYTES
+              .col-sm-5.offset-sm-1
+                input(type="range", name="monocytes", min="4" max="13") 
+                output(for="monocytes" onforminput="value = monocytes.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (%)
+            +form-row('eos', 'range', '', 'eos')
+              label.col-sm-6.col-form-label(for='eos') EOS
+              .col-sm-5.offset-sm-1
+                input(type="range", name="eos", min="0" max="7") 
+                output(for="eos" onforminput="value = eos.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (%)
+            +form-row('basos', 'range', '', 'basos')
+              label.col-sm-6.col-form-label(for='basos') BASOS
+              .col-sm-5.offset-sm-1
+                input(type="range", name="basos", min="0" max="3") 
+                output(for="basos" onforminput="value = basos.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (%)
+            +form-row('neutrophils_abs', 'range', '', 'neutrophils_abs')
+              label.col-sm-6.col-form-label(for='neutrophils') NEUTROPHILS (ABSOLUTE)
+              .col-sm-5.offset-sm-1
+                input(type="range", name="neutrophils_abs", min="18" max="78", dec) 
+                output(for="neutrophils_abs" onforminput="value = neutrophils_abs.valueAsNumber;")
+                span(style='margin-left: 10px; color: blue') (x10E3/uL)
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          button.btn.btn-primary(type='submit') Send

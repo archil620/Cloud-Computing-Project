@@ -1,0 +1,46 @@
+// Navigation
+nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+  a.navbar-brand(href='/dashboard') Blood Bank
+  button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarResponsive.collapse.navbar-collapse
+    ul#exampleAccordion.navbar-nav.navbar-sidenav
+      li.nav-item(data-toggle='tooltip', data-placement='right', title='Dashboard')
+        a.nav-link(href='/dashboard')
+          i.fa.fa-fw.fa-dashboard
+          span.nav-link-text
+            | Dashboard
+      li.nav-item(data-toggle='tooltip', data-placement='right', title='Charts')
+        a.nav-link(href='/donate')
+          i.fa.fa-fw.fa-flag
+          span.nav-link-text
+            | Pending Donations
+      li.nav-item(data-toggle='tooltip', data-placement='right', title='Charts')
+        a.nav-link(href='/submitted')
+          i.fa.fa-fw.fa-flag
+          span.nav-link-text
+            | Submitted Donations
+      li.nav-item(data-toggle='tooltip', data-placement='right', title='Tables')
+        a.nav-link(href='/checking')
+          i.fa.fa-fw.fa-table
+          span.nav-link-text
+            | Checking Donations
+      li.nav-item(data-toggle='tooltip', data-placement='right', title='Link')
+        a.nav-link(href='/approving')
+          i.fa.fa-fw.fa-th
+          span.nav-link-text
+            | Approving Donations
+      li.nav-item(data-toggle='tooltip', data-placement='right', title='Link')
+        a.nav-link(href='/finishing')
+          i.fa.fa-fw.fa-trophy
+          span.nav-link-text
+            | Approved Donations
+    ul.navbar-nav.sidenav-toggler
+      li.nav-item
+        a#sidenavToggler.nav-link.text-center
+          i.fa.fa-fw.fa-angle-left
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        a.nav-link(href='/logout')
+          i.fa.fa-fw.fa-sign-out
+          | Logout

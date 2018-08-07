@@ -1,0 +1,41 @@
+extends layout.pug
+
+block content        
+  .row.justify-content-center
+    .col-xl-3.col-sm-6.mb-3
+      .card.text-white.bg-danger.o-hidden.h-150
+        .card-body
+          .card-body-icon
+            i.fa.fa-fw.fa-medkit
+          .mr-5
+            | Blood
+        a#bloodLink.card-footer.text-white.clearfix.small.z-1(data-toggle='modal')
+          span.float-left Donate
+          span.float-right
+            i.fa.fa-angle-right
+    .col-xl-3.col-sm-6.mb-3
+      .card.text-white.bg-warning.o-hidden.h-150
+        .card-body
+          .card-body-icon
+            i.fa.fa-fw.fa-renren
+          .mr-5
+            | Organs
+        a#organLink.card-footer.text-white.clearfix.small.z-1(data-toggle='modal')
+          span.float-left Donate
+          span.float-right
+            i.fa.fa-angle-right
+    .col-xl-3.col-sm-6.mb-3
+      .card.text-white.bg-success.o-hidden.h-150
+        .card-body
+          .card-body-icon
+            i.fa.fa-fw.fa-pagelines
+          .mr-5
+            | Tissue
+        a#tissueLink.card-footer.text-white.clearfix.small.z-1(data-toggle='modal')
+          span.float-left Donate
+          span.float-right
+            i.fa.fa-angle-right
+    
+  // Example DataTables Card
+  include includes/donationTbl.pug
+      

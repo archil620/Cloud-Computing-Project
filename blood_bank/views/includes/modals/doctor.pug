@@ -1,0 +1,44 @@
+// Donate Modal
+mixin form-row(name, type, label, id)
+  .form-group.row    
+    if block 
+      block
+    else
+      label.col-sm-2.col-form-label(for=id)= label+':'
+      .col-sm-10
+        input.form-control(id=id, placeholder=label, name=name, type=type, required)
+
+#doctorModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='doctorModalLabel', aria-hidden='true')
+  .modal-dialog.modal-lg(role='document')
+    .modal-content
+      form#donate(method='POST', action='/to/doctor')
+        .modal-header
+          h5#exampleModalLabel.modal-title Please fill out the followings for sending to doctor!
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          .container-fluid
+            input#appId(type='hidden', name="appId")
+            +form-row('asking', 'text', 'Have you had alcohol for any sort in the last 24 hours?', 'asking')
+              label.col-sm-12.col-form-label(for='asking') Is there anything special you need to ask the doctor before donating?
+              .col-sm-10.offset-sm-2
+                input#asking.form-control(name='asking', type='text', required)
+            +form-row('needle', 'text', 'Have you had alcohol for any sort in the last 24 hours?', 'needle')
+              label.col-sm-12.col-form-label(for='needle') Any special needle requests? Tell the doctor!
+              .col-sm-10.offset-sm-2
+                input#needle.form-control(name='needle', type='text', required)
+            +form-row('donor', 'text', 'Have you had alcohol for any sort in the last 24 hours?', 'donor')
+              label.col-sm-12.col-form-label(for='donor') Any questions regarding the donor selection process?
+              .col-sm-10.offset-sm-2
+                input#donor.form-control(name='donor', type='text', required)
+            +form-row('donationDate', 'text', 'Have you had alcohol for any sort in the last 24 hours?', 'donationDate')
+              label.col-sm-12.col-form-label(for='donationDate') Preferable date/ time for donation
+              .col-sm-10.offset-sm-2
+                input#donationDate.form-control(name='donationDate', type='text', required) 
+            +form-row('share', 'text', 'Have you had alcohol for any sort in the last 24 hours?', 'share')
+              label.col-sm-12.col-form-label(for='donationDate') What to share anything personal with the doctor?
+              .col-sm-10.offset-sm-2
+                input#share.form-control(name='share', type='text', required)                    
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          button.btn.btn-primary(type='submit') Send
