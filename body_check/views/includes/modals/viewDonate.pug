@@ -1,0 +1,96 @@
+// Donate Modal
+mixin form-row(label, data)
+  .form-group.row    
+    if block 
+      block
+    else
+      label.col-sm-2.col-form-label(for=id)= label+':'
+      .col-sm-10= data
+
+#bloodModal.modal.show(tabindex='-1', role='dialog', aria-labelledby='bloodModalLabel', aria-hidden='true')
+  .modal-dialog.modal-lg(role='document')
+    .modal-content
+      form#donate(method='POST', action='/donate')
+        .modal-header
+          h5#exampleModalLabel.modal-title Thanks for your donation!
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          .container-fluid          
+            +form-row('name', 'text', 'Name', 'name')
+            +form-row('donateType', 'text', '', 'donateType')
+              input#donateType.custom-control-input(type='hidden', name='donateType', value="BL")
+            +form-row('age', 'text', 'Age', 'age')
+            +form-row('sex', 'text', 'Sex', 'sex')
+              label.col-sm-2.col-form-label(for='sex') Sex
+              .col-sm-10
+                .custom-control.custom-radio.custom-control-inline
+                  input#male.custom-control-input(type='radio', name='sex', value="0")
+                  label.custom-control-label(for='male')
+                  | Male
+                .custom-control.custom-radio.custom-control-inline
+                  input#female.custom-control-input(type='radio', name='sex', value="1")
+                  label.custom-control-label(for='female')
+                  | Female
+            +form-row('lst_donation', 'text', 'When was your last donation?', 'lst_donation')
+            +form-row('health_condition', 'text', 'Any existing health condition?', 'health_condition')
+            +form-row('had_alcohol', 'text', 'Have you had alcohol for any sort in the last 24 hours?', 'had_alcohol')
+              label.col-sm-12.col-form-label(for='had_alcohol')
+              | Have you had alcohol for any sort in the last 24 hours?
+              .col-sm-10.offset-sm-2
+                input#had_alcohol.form-control(name='had_alcohol', type='text', required)
+            +form-row('dental', 'text', '', 'dental')
+              label.col-sm-12.col-form-label(for='dental')
+              | Have you had a cleaning or a filling in the last 24 hours or dental surgery in the last 72 hours?
+              .col-sm-10.offset-sm-2
+                input#dental.form-control(name='dental', type='text', required)   
+            +form-row('pregnant', 'text', '', 'pregnant')
+              label.col-sm-12.col-form-label(for='pregnant')
+              | Have you been pregnant or had a baby in the last 6 months?
+              .col-sm-10.offset-sm-2
+                input#pregnant.form-control(name='pregnant', type='text', required)         
+            +form-row('medication', 'text', '', 'medication')
+              label.col-sm-12.col-form-label(for='medication')
+              | Are you taking prescription medications? If so what?
+              .col-sm-10.offset-sm-2
+                input#medication.form-control(name='medication', type='text', required)
+            +form-row('tattoo', 'text', '', 'tattoo')
+              label.col-sm-12.col-form-label(for='tattoo')
+              | Have you had any tattoos or body piercing in the last four months?
+              .col-sm-10.offset-sm-2
+                input#tattoo.form-control(name='tattoo', type='text', required)   
+            +form-row('weight', 'text', '', 'weight')
+              label.col-sm-12.col-form-label(for='weight')
+              | Do you weight less than 7 stone 12 lbs (less than 50kgs) or more than 20 stone 6 lbs (130kgs)?
+              .col-sm-10.offset-sm-2
+                input#weight.form-control(name='weight', type='text', required)
+            +form-row('illness', 'text', '', 'illness')
+              label.col-sm-12.col-form-label(for='illness')
+              | Today or in the last 2 weeks have you had any illness or injury, e.g. a cough, a cold, a sore throat, vomiting, diarrhoea or an open wound?
+              .col-sm-10.offset-sm-2
+                input#illness.form-control(name='illness', type='text', required) 
+            +form-row('investigation', 'text', '', 'investigation')
+              label.col-sm-12.col-form-label(for='investigation')
+              | Have you had any medical tests or investigations in the last 4 months or since your last donation?
+              .col-sm-10.offset-sm-2
+                input#investigation.form-control(name='investigation', type='text', required)  
+            +form-row('heart', 'text', '', 'heart')
+              label.col-sm-12.col-form-label(for='heart')
+              | Do you HAVE A SERIOUS HEART CONDITION?
+              .col-sm-10.offset-sm-2
+                input#heart.form-control(name='heart', type='text', required)    
+            +form-row('iron', 'text', 'are you LOW IN IRON?', 'iron')
+            +form-row('drug', 'text', '', 'drug')
+              label.col-sm-12.col-form-label(for='drug')
+              | have you EVER INJECTED RECREATIONAL DRUGS?
+              .col-sm-10.offset-sm-2
+                input#drug.form-control(name='drug', type='text', required) 
+            +form-row('oversea', 'text', '', 'oversea')
+              label.col-sm-12.col-form-label(for='oversea')
+              | have you been OVERSEAS IN THE 4 MONTHS BEFORE YOUR DONATION?
+              .col-sm-10.offset-sm-2
+                input#oversea.form-control(name='oversea', type='text', required)                   
+            
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          button.btn.btn-primary(type='submit') Save

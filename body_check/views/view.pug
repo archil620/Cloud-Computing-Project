@@ -1,0 +1,80 @@
+extends layout.pug
+
+block content        
+  // Donate Modal
+  mixin form-row(label, value)
+    .row(style='border-bottom: 1px dotted green')    
+      label.col-sm-4= label+':'
+      .col-sm-8= value
+  
+  .card.bg-info.o-hidden.h100
+    .card-header.bg-primary
+      .float-left
+        h3(style="color:white")= 'Donation: ' + id
+      .float-right
+        if status<1
+          button.btn.btn-success(onclick=`approved(${id})`, type='button', style="margin-right:25px") Approved        
+        //if status==0
+          button.btn.btn-danger(onclick=`checkbody(${id})`, type='button') Request Checking body
+        
+    .card-body
+      .row
+        .col-lg-6.col-sm-12
+          .card.o-hidden.h100
+            .card-header User's Information          
+            .card-body
+              +form-row('Name', name)
+              +form-row('Age', age)
+              +form-row('Sex', sex?"Female": "Male")
+              +form-row('When was your last donation?', lst_donation)  
+              +form-row('Any existing health condition?', health_condition)                    
+              +form-row('Have you had alcohol for any sort in the last 24 hours?', had_alcohol)
+              +form-row('Have you had a cleaning or a filling in the last 24 hours or dental surgery in the last 72 hours?', dental)
+              +form-row('Have you been pregnant or had a baby in the last 6 months?', pregnant)
+              +form-row('Are you taking prescription medications? If so what?', medication)
+              +form-row('Have you had any tattoos or body piercing in the last four months?', tattoo)
+              +form-row('Do you weigh less than 7 stone 12 lbs (less than 50kgs) or more than 20 stone 6 lbs (130kgs)?', weight)
+              +form-row('Today or in the last 2 weeks have you had any illness or injury, e.g. a cough, a cold, a sore throat, vomiting, diarrhoea or an open wound?', illness)
+              +form-row('Have you had any medical tests or investigations in the last 4 months or since your last donation?', investigation)
+              +form-row('are you LOW IN IRON?', iron)
+              +form-row('do you HAVE A SERIOUS HEART CONDITION?', heart)
+              +form-row('have you been OVERSEAS IN THE 4 MONTHS BEFORE YOUR DONATION?', oversea)
+        .col-lg-6.col-sm-12
+          .card.o-hidden.h100
+            .card-header Body informations          
+            .card-body
+              +form-row('glucose',        glucose + ' (mg/dL)')
+              +form-row('bun',            bun + ' (mg/dL)')
+              +form-row('creatinine',     creatinine/100 + ' (mg/dL)')
+              +form-row('glom',           parseInt(glom)? ' <59 (mL/min/1.73)': ' >59 (mL/min/1.73)')
+              +form-row('african',        parseInt(african)? ' <59 (mL/min/1.73)': ' >59 (mL/min/1.73)')
+              +form-row('bun_creatinine', bun_creatinine)
+              +form-row('sodium',         sodium + ' (mmol/L)')
+              +form-row('potassium',      potassium + ' (mmol/L)')
+              +form-row('chloride',       chloride + ' (mmol/L)')
+              +form-row('carbon',         carbon + ' (mmol/L)')
+              +form-row('calcium',        calcium/100 + ' (mg/dL)')
+              +form-row('protein',        protein/100 + ' (g/dL)')
+              +form-row('albumin',        albumin/100 + ' (g/dL)')
+              +form-row('ag',             ag/100 )
+              +form-row('bilirubin',      bilirubin/100 + ' (mg/dL)')
+              +form-row('alkaline',       alkaline + ' (IU/L)')
+              +form-row('ast',            ast + ' (IU/L)')
+              +form-row('alt_sgpt',       alt_sgpt + ' (IU/L)')
+              +form-row('tsh',            tsh + ' (uIU/mL)')
+              +form-row('white',          white/100 + ' (x10E3/uL)')
+              +form-row('red',            red + ' (x10E6/uL)')
+              +form-row('hemoglobin',     hemoglobin/100 + ' (g/dL)')
+              +form-row('hematocrit',     hematocrit/100 + ' %')
+              +form-row('mcv',            mcv + ' fL')
+              +form-row('mch',            mch/10 + ' pg')
+              +form-row('mchc',           mchc/10 + ' g/dL')
+              +form-row('rdw',            rdw/10 + ' %')
+              +form-row('platelets',      platelets + ' g/dL')
+              +form-row('neutrophils',    neutrophils + ' %')
+              +form-row('lymphs',         lymphs + ' fL')
+              +form-row('monocytes',      monocytes + ' %')
+              +form-row('eos',            eos + ' %')
+              +form-row('basos',          basos + ' %')
+              +form-row('neutrophils_abs', neutrophils_abs/10 + ' (x10E3/uL)')
+              
